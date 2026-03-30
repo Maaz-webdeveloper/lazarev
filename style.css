@@ -156,30 +156,35 @@ nav button svg {
 }
 
 #moving-div {
-  /* background-color: red; */
   margin-top: 10vh;
   position: absolute;
   bottom: 3%;
-  white-space: nowrap;
-  padding: 1.2vw;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
   overflow: hidden;
   width: 44%;
+  padding: 1.2vw 0;
 }
 
 #moving-div .move {
-  display: inline-block;
-  animation-name: mobe;
-  animation-duration: 9s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  width: max-content;
+  animation: marquee 12s linear infinite;
+  will-change: transform;
 }
 
 #moving-div .move img {
+  display: block;
+  flex-shrink: 0;
   height: 1vw;
   margin: 0 1.2vw;
 }
 
-@keyframes mobe {
+@keyframes marquee {
   0% {
     transform: translateX(0);
   }
@@ -187,6 +192,19 @@ nav button svg {
   100% {
     transform: translateX(-100%);
   }
+}
+
+#moving-div .logo-fallback {
+  flex-shrink: 0;
+  margin: 0 1.2vw;
+  padding: 0.35vw 0.8vw;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 999px;
+  font-size: 0.75vw;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 #blur-left {
@@ -860,6 +878,11 @@ summary::marker {
     height: 2vw;
   }
 
+  #moving-div .logo-fallback {
+    font-size: 1.4vw;
+    padding: 0.55vw 1.2vw;
+  }
+
   #page2 {
     height: auto;
     min-height: 100vh;
@@ -1037,11 +1060,17 @@ summary::marker {
 
   #moving-div {
     width: 90%;
-    display: block;
+    display: flex;
+    align-items: center;
   }
 
   #moving-div .move img {
     height: 4vw;
+  }
+
+  #moving-div .logo-fallback {
+    font-size: 2.8vw;
+    padding: 1vw 2vw;
   }
 
   #page2 {

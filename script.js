@@ -113,6 +113,29 @@ function mobileMenuToggle() {
 }
 mobileMenuToggle();
 
+function marqueeLogoFallback() {
+  var marqueeLogos = document.querySelectorAll("#moving-div img");
+
+  marqueeLogos.forEach(function (img) {
+    function replaceWithFallback() {
+      if (!img.parentNode || img.dataset.fallbackApplied === "true") return;
+
+      img.dataset.fallbackApplied = "true";
+      var fallback = document.createElement("span");
+      fallback.className = "logo-fallback";
+      fallback.textContent = img.alt || "Brand";
+      img.replaceWith(fallback);
+    }
+
+    img.addEventListener("error", replaceWithFallback);
+
+    if (img.complete && img.naturalWidth === 0) {
+      replaceWithFallback();
+    }
+  });
+}
+marqueeLogoFallback();
+
 function Page2Animation() {
   var rightElems = document.querySelectorAll(".right-elem");
 
